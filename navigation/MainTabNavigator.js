@@ -8,9 +8,10 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import UspScreen from '../screens/UspScreen';
 import LoginScreen from '../screens/LoginScreen';
+import SelectSlotScreen from '../screens/SelectSlotScreen';
 
 const HomeStack = createStackNavigator({
-  Home: LoginScreen,
+  Home: SelectSlotScreen,
 });
 
 HomeStack.navigationOptions = {
