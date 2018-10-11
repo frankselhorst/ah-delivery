@@ -8,7 +8,9 @@ import {
   Spinner,
   Card,
   CardItem,
-  Body
+  Body,
+  Title,
+  Button
 } from 'native-base';
 
 import { Query } from 'react-apollo';
@@ -24,6 +26,9 @@ const GET_LOCATIONS = gql`
         id
         title
       }
+    }
+    me {
+      id
     }
   }
 `;
@@ -44,19 +49,19 @@ export default class SelectSlotScreen extends React.Component {
               if (error) return <Text> Error! ${error.message} </Text>;
 
               return data.locations.map(({ zone, place, id, rides }) => (
-                <Card key={id}>
-                  <CardItem header>
-                    <Text>{place}</Text>
-                  </CardItem>
-                  <CardItem>
-                    <Body>
-                      <Text>{zone}</Text>
-                    </Body>
-                  </CardItem>
-                  <CardItem footer>
-                    <Text>Aantal ritten {rides.length}</Text>
-                  </CardItem>
-                </Card>
+                <Content key={id}>
+                  <Title>{place}</Title>
+                  {rides.map(({ id, title }) => (
+                    <Card key={id}>
+                      <CardItem header>
+                        <Text>{title}</Text>
+                      </CardItem>
+                      <Button full primary>
+                        <Text>Ik wil deze rijden</Text>
+                      </Button>
+                    </Card>
+                  ))}
+                </Content>
               ));
             }}
           </Query>
