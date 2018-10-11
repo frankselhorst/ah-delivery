@@ -43,18 +43,18 @@ export default class SelectSlotScreen extends React.Component {
               if (loading) return <Spinner />;
               if (error) return <Text> Error! ${error.message} </Text>;
 
-              return data.locations.map(({}) => (
-                <Card>
+              return data.locations.map(({ zone, place, id, rides }) => (
+                <Card key={id}>
                   <CardItem header>
-                    <Text>NativeBase</Text>
+                    <Text>{place}</Text>
                   </CardItem>
                   <CardItem>
                     <Body>
-                      <Text>//Your text here</Text>
+                      <Text>{zone}</Text>
                     </Body>
                   </CardItem>
                   <CardItem footer>
-                    <Text>GeekyAnts</Text>
+                    <Text>Aantal ritten {rides.length}</Text>
                   </CardItem>
                 </Card>
               ));
