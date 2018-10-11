@@ -8,6 +8,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import UspScreen from '../screens/UspScreen';
 import WaitingForApprovalScreen from '../screens/WaitingForApprovalScreen';
 import ApprovedScreen from '../screens/ApprovedScreen';
+import OnboardScreen from '../screens/OnboardScreen';
 
 export default createSwitchNavigator({
   // You could add another route here for authentication.
@@ -19,4 +20,7 @@ export default createSwitchNavigator({
   Usp: UspScreen,
   WaitingForApproval: WaitingForApprovalScreen,
   Approved: ApprovedScreen,
-});
+  Onboarding: OnboardScreen
+}, {
+    initialRouteName: 'Onboarding'
+  });
