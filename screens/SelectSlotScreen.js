@@ -3,15 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import gql from 'graphql-tag';
 import {
   Container,
-  Body,
-  Title,
   Content,
   Text,
-  Form,
-  Item,
-  Label,
-  Input,
-  Button
+  Spinner,
+  Card,
+  CardItem,
+  Body
 } from 'native-base';
 
 import { Query } from 'react-apollo';
@@ -26,15 +23,12 @@ const GET_LOCATIONS = gql`
       rides {
         id
         title
-        driver {
-          username
-        }
       }
     }
   }
 `;
 
-export default class LoginScreen extends React.Component {
+export default class SelectSlotScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
@@ -42,28 +36,28 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <Container>
-        <AppHeader title="Inloggen" />
+        <AppHeader title="Kies je rit" />
         <Content padder>
           <Query query={GET_LOCATIONS}>
             {({ loading, error, data }) => {
-              if (loading) return <Text> Loading </Text>;
+              if (loading) return <Spinner />;
               if (error) return <Text> Error! ${error.message} </Text>;
 
-              return (
-                <Form>
-                  <Item stackedLabel>
-                    <Label>Gebruikersnaam {data.locations[0].place}</Label>
-                    <Input />
-                  </Item>
-                  <Item stackedLabel last>
-                    <Label>Paswoord</Label>
-                    <Input />
-                  </Item>
-                  <Button style={styles.button} block primary>
-                    <Text> Inloggen </Text>
-                  </Button>
-                </Form>
-              );
+              return data.locations.map(({ zone, place, id, rides }) => (
+                <Card key={id}>
+                  <CardItem header>
+                    <Text>{place}</Text>
+                  </CardItem>
+                  <CardItem>
+                    <Body>
+                      <Text>{zone}</Text>
+                    </Body>
+                  </CardItem>
+                  <CardItem footer>
+                    <Text>Aantal ritten {rides.length}</Text>
+                  </CardItem>
+                </Card>
+              ));
             }}
           </Query>
         </Content>
