@@ -1,27 +1,54 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import {
+  Container,
+  Header,
+  Body,
+  Title,
+  Content,
   Text,
-  View,
-  StyleSheet,
-} from 'react-native';
+  Form,
+  Item,
+  Label,
+  Input,
+  Button
+} from 'native-base';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    header: null
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>LoginScreen</Text>
-      </View>
+      <Container>
+        <Header transparent={true}>
+          <Body>
+            <Title>Inloggen</Title>
+          </Body>
+        </Header>
+        <Content padder>
+          <Form>
+            <Item stackedLabel>
+              <Label>Gebruikersnaam</Label>
+              <Input />
+            </Item>
+            <Item stackedLabel last>
+              <Label>Paswoord</Label>
+              <Input />
+            </Item>
+            <Button style={styles.button} block primary>
+              <Text> Inloggen </Text>
+            </Button>
+          </Form>
+        </Content>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+  button: {
+    marginTop: 30
+  }
 });

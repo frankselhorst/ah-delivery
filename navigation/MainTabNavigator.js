@@ -7,9 +7,10 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import UspScreen from '../screens/UspScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const HomeStack = createStackNavigator({
-  Home: UspScreen,
+  Home: LoginScreen,
 });
 
 HomeStack.navigationOptions = {
