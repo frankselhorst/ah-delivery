@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView, Dimensions } from 'react-native';
 import gql from 'graphql-tag';
 import { Container, Content, Text, Spinner } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import colors from '../constants/Colors';
 import { Query } from 'react-apollo';
 
@@ -57,56 +58,80 @@ export default class SelectSlotScreen extends React.Component {
     const { filterPlace, filterTime } = this.state;
     return (
       <Container style={styles.container}>
-        <Content padder style={styles.filters}>
-          <PlaceFilter onPlaceFiltered={this.onPlaceFiltered} />
-          <TimeFilter
-            style={styles.timeFilter}
-            location={filterPlace}
-            onTimeFiltered={this.onTimeFiltered}
-          />
-        </Content>
-        <Content padder style={styles.slotContainer}>
-          <Query query={GET_LOCATIONS}>
-            {({ loading, error, data }) => {
-              if (loading) return <Spinner />;
-              if (error) return <Text> Error! ${error.message} </Text>;
+        <Content padder>
+          <Grid>
+            <Row>
+              <Col style={styles.filters}>
+                <PlaceFilter onPlaceFiltered={this.onPlaceFiltered} />
+                <TimeFilter
+                  style={styles.timeFilter}
+                  location={filterPlace}
+                  onTimeFiltered={this.onTimeFiltered}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <ScrollView vertical style={styles.slotContainer}>
+                  <Query query={GET_LOCATIONS}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <Spinner />;
+                      if (error) return <Text> Error! ${error.message} </Text>;
 
-              return data.getLocations
-                .filter(({ id }) => filterPlace === null || id === filterPlace)
-                .map(({ zone, place, id, rides }, index) => {
-                  return rides
-                    .filter(
-                      ({ from }) => filterTime === null || from === filterTime
-                    )
-                    .map((ride, rideIndex) => (
-                      <Ride onPress={this.onRideSelected} key={`${ride.id}-${rideIndex}`} place={place} ride={ride} />
-                    ));
-                });
-            }}
-          </Query>
+                      return data.getLocations
+                        .filter(
+                          ({ id }) => filterPlace === null || id === filterPlace
+                        )
+                        .map(({ zone, place, id, rides }, index) => {
+                          return rides
+                            .filter(
+                              ({ from }) =>
+                                filterTime === null || from === filterTime
+                            )
+                            .map((ride, rideIndex) => (
+                              <Ride
+                                onPress={this.onRideSelected}
+                                key={`${ride.id}-${rideIndex}`}
+                                place={place}
+                                ride={ride}
+                              />
+                            ));
+                        });
+                    }}
+                  </Query>
+                </ScrollView>
+              </Col>
+            </Row>
+          </Grid>
         </Content>
       </Container>
     );
   }
 }
 
+const fack = 100;
 const styles = StyleSheet.create({
   slotContainer: {
     backgroundColor: colors.appBackground,
+    flex: 0,
+    height: Dimensions.get('screen').height - 290
   },
   group: {
-    marginBottom: 30
+    marginBottom: 30,
+    flex: 0
   },
   filters: {
-    height: 100,
     borderBottomWidth: 1,
-    borderColor: '#eeeeee'
+    borderColor: '#eeeeee',
+    flex: 0,
+    height: 290,
   },
   timeFilter: {
-    marginTop: 16
+    marginTop: 16,
+    flex: 0
   },
   container: {
-    flex: 1,
+    flex: 0,
     flexDirection: 'column',
     justifyContent: 'center'
   }
