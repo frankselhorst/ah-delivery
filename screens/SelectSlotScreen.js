@@ -21,6 +21,7 @@ const GET_LOCATIONS = gql`
         from
         till
         duration
+        fee
       }
     }
   }
@@ -72,13 +73,13 @@ export default class SelectSlotScreen extends React.Component {
 
               return data.getLocations
                 .filter(({ id }) => filterPlace === null || id === filterPlace)
-                .map(({ zone, place, id, rides }) => {
+                .map(({ zone, place, id, rides }, index) => {
                   return rides
                     .filter(
                       ({ from }) => filterTime === null || from === filterTime
                     )
-                    .map(ride => (
-                      <Ride onPress={this.onRideSelected} key={ride.id} place={place} ride={ride} />
+                    .map((ride, rideIndex) => (
+                      <Ride onPress={this.onRideSelected} key={`${ride.id}-${rideIndex}`} place={place} ride={ride} />
                     ));
                 });
             }}
