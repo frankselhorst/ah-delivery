@@ -14,7 +14,7 @@ import SlotSelectedScreen from '../screens/SlotSelectedScreen';
 export default createStackNavigator({
   // You could add another route here for authentication.
   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  Main: MainTabNavigator,
+  // Main: MainTabNavigator,
   Login: LoginScreen,
   LoginOrRegister: LoginOrRegisterScreen,
   Register: RegisterScreen,
@@ -24,5 +24,5 @@ export default createStackNavigator({
   Onboarding: OnboardScreen,
   SelectSlot: SelectSlotScreen
 }, {
-    initialRouteName: 'LoginOrRegister'
+    initialRouteName: 'Onboarding'
   });
