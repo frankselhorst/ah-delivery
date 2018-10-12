@@ -24,5 +24,5 @@ export default createStackNavigator({
   Onboarding: OnboardScreen,
   SelectSlot: SelectSlotScreen
 }, {
-    initialRouteName: 'Login'
+    initialRouteName: 'Onboarding'
   });
