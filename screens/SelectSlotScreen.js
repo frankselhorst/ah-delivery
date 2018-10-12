@@ -98,7 +98,9 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   filters: {
-    height: 100
+    height: 100,
+    borderBottomWidth: 1,
+    borderColor: '#eeeeee'
   },
   timeFilter: {
     marginTop: 16
