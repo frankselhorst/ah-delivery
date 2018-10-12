@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { View, StyleSheet, ScrollView, Dimensions, Title } from 'react-native';
 import gql from 'graphql-tag';
-import { Text, Title, Button, InputGroup } from 'native-base';
+import { Text, Button, InputGroup } from 'native-base';
 import { Query } from 'react-apollo';
+
 
 const GET_LOCATIONS = gql`
   {
