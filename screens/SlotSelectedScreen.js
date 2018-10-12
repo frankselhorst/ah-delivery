@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import MapComponent from '../components/map/map';
 
-export default class UspScreen extends React.Component {
+export default class SlotSelectedScreen extends React.Component {
 
   static navigationOptions = {
     header: null
