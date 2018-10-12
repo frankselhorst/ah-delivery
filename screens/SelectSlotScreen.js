@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import gql from 'graphql-tag';
 import {
   Container,
@@ -10,11 +10,15 @@ import {
   CardItem,
   Body,
   Title,
-  Button
+  Button,
+  InputGroup
 } from 'native-base';
 
 import { Query } from 'react-apollo';
 import AppHeader from '../components/app-header/app-header';
+import PlaceFilter from '../components/place-filter/place-filter';
+import TimeFilter from '../components/time-filter/time-filter';
+import Ride from '../components/ride/ride';
 
 const GET_LOCATIONS = gql`
   {
@@ -25,10 +29,9 @@ const GET_LOCATIONS = gql`
       rides {
         id
         title
+        from
+        till
       }
-    }
-    me {
-      id
     }
   }
 `;
@@ -38,31 +41,46 @@ export default class SelectSlotScreen extends React.Component {
     header: null
   };
 
+  state = {
+    filterPlace: null,
+    filterTime: null
+  };
+
+  onPlaceFiltered = placeId => {
+    this.setState({
+      filterPlace: placeId
+    });
+  };
+
+  onTimeFiltered = time => {
+    this.setState({
+      filterTime: time
+    });
+  };
+
   render() {
+    const { filterPlace, filterTime } = this.state;
     return (
       <Container>
         <AppHeader title="Kies je rit" />
         <Content padder>
+          <PlaceFilter onPlaceFiltered={this.onPlaceFiltered} />
+          <TimeFilter onTimeFiltered={this.onTimeFiltered} />
+
           <Query query={GET_LOCATIONS}>
             {({ loading, error, data }) => {
               if (loading) return <Spinner />;
               if (error) return <Text> Error! ${error.message} </Text>;
 
-              return data.locations.map(({ zone, place, id, rides }) => (
-                <Content key={id}>
-                  <Title>{place}</Title>
-                  {rides.map(({ id, title }) => (
-                    <Card key={id}>
-                      <CardItem header>
-                        <Text>{title}</Text>
-                      </CardItem>
-                      <Button full primary>
-                        <Text>Ik wil deze rijden</Text>
-                      </Button>
-                    </Card>
-                  ))}
-                </Content>
-              ));
+              return data.locations
+                .filter(({ id }) => filterPlace === null || id === filterPlace)
+                .map(({ zone, place, id, rides }) => {
+                  return rides
+                    .filter(
+                      ({ from }) => filterTime === null || from === filterTime
+                    )
+                    .map(ride => <Ride key={ride.id} place={place} ride={ride} />);
+                });
             }}
           </Query>
         </Content>
@@ -72,7 +90,7 @@ export default class SelectSlotScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 30
+  group: {
+    marginBottom: 30
   }
 });
