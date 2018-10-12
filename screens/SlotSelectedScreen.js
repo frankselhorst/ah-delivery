@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
-import MapComponent from '../components/map/map';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import globalStyles from '../styles/styles';
+
+import Onboarding from 'react-native-onboarding-swiper';
 
 export default class SlotSelectedScreen extends React.Component {
-
   static navigationOptions = {
     header: null
   };
@@ -11,10 +12,30 @@ export default class SlotSelectedScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MapComponent style={{
-          height: Dimensions.get('window').height,
-          width: Dimensions.get('window').width,
-        }} />
+        <Onboarding
+          bottomBarHeight={0}
+          transitionAnimationDuration={0}
+          onDone={() => {
+            this.props.navigation.push('SelectSlot');
+          }}
+          showSkip={false}
+          pages={[
+            {
+              backgroundColor: '#ffd700',
+              image: <Image source={require('../assets/images/done.gif')} />,
+              title: (
+                <Text style={[globalStyles.header1, styles.pageTitle]}>
+                  thnx!
+                </Text>
+              ),
+              subtitle: (
+                <Text style={[globalStyles.headerSemi2, styles.pageSubTitle]}>
+                  we zien je morgen
+                </Text>
+              )
+            }
+          ]}
+        />
       </View>
     );
   }
@@ -24,5 +45,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  pageTitle: {
+    color: '#fff',
+    fontSize: 26
+  },
+  pageSubTitle: {
+    marginTop: 8,
+    color: '#fff'
   }
 });
