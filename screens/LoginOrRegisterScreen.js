@@ -21,19 +21,19 @@ export default class LoginOrRegisterScreen extends React.Component {
           <Form>
             <Item stackedLabel>
               <Label>Gebruikersnaam</Label>
-              <Input keyboardType={'default'} autoCapitalize={false} />
+              <Input keyboardType={'default'} />
             </Item>
             <Item stackedLabel>
               <Label>Wachtwoord</Label>
-              <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
+              <Input secureTextEntry={true} keyboardType={'default'} />
             </Item>
             <Item stackedLabel>
               <Label>Bevestig wachtwoord</Label>
-              <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
+              <Input secureTextEntry={true} keyboardType={'default'} />
             </Item>
             <Item stackedLabel>
               <Label>E-mail</Label>
-              <Input keyboardType={'default'} autoCapitalize={false} />
+              <Input keyboardType={'default'} />
             </Item>
             <Button className={styles.button} onPress={() => this.props.navigation.navigate('WaitingForApproval')} block>
               <Text style={styles.submitButtonText}> Registreren </Text>

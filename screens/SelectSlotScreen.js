@@ -9,6 +9,7 @@ import { Query } from 'react-apollo';
 import PlaceFilter from '../components/place-filter/place-filter';
 import TimeFilter from '../components/time-filter/time-filter';
 import Ride from '../components/ride/ride';
+import AppHeader from '../components/app-header/app-header';
 
 const GET_LOCATIONS = gql`
   {
