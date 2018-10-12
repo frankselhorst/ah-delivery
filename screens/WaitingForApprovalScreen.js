@@ -28,7 +28,6 @@ export default class WaitingForApprovalScreen extends React.Component {
     return (
       <View style={styles.container}>
         <AppHeader title="Ff wachten nog" />
-        <Map />
         {this.state.approved && <Approved navigation={this.props.navigation} />}
       </View>
     );

@@ -33,13 +33,13 @@ export default class OnboardScreen extends React.Component {
                         },
                         {
                             backgroundColor: "#0DEEBB",
-                            image: <Image source={require('../assets/images/flex.gif')} />,
+                            image: <Image source={require('../assets/images/flex2.gif')} />,
                             title: <Text style={styles.pageTitle}>Dan ga ik wel komen</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>want ik ben flexibel</Text>,
                         },
                         {
                             backgroundColor: "#FFD702",
-                            image: <Image source={require('../assets/images/smart.gif')} />,
+                            image: <Image source={require('../assets/images/smart2.gif')} />,
                             title: <Text style={styles.pageTitle}>In ieder stadje</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>een ander ritje</Text>,
                         }
