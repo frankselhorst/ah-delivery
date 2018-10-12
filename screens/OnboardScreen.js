@@ -27,19 +27,19 @@ export default class OnboardScreen extends React.Component {
                     pages={[
                         {
                             backgroundColor: "#0383FF",
-                            image: <Image source={require('../assets/images/money.gif')} />,
+                            image: <Image source={require('../assets/images/money_v2.gif')} />,
                             title: <Text style={styles.pageTitle}>Make money fast</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>in 3 stappen een baan</Text>,
                         },
                         {
                             backgroundColor: "#0DEEBB",
-                            image: <Image source={require('../assets/images/flex2.gif')} />,
+                            image: <Image source={require('../assets/images/flex_v2.gif')} />,
                             title: <Text style={styles.pageTitle}>Dan ga ik wel komen</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>want ik ben flexibel</Text>,
                         },
                         {
                             backgroundColor: "#FFD702",
-                            image: <Image source={require('../assets/images/smart2.gif')} />,
+                            image: <Image source={require('../assets/images/smart_v2.gif')} />,
                             title: <Text style={styles.pageTitle}>In ieder stadje</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>een ander ritje</Text>,
                         }

@@ -3,9 +3,9 @@ import {
   Text,
   View,
   StyleSheet,
+  Image
 } from 'react-native';
 import { Container, Content, Form, Item, Label, Input, Button } from 'native-base';
-import AppHeader from '../components/app-header/app-header';
 import Colors from '../constants/Colors';
 
 export default class LoginOrRegisterScreen extends React.Component {
@@ -17,29 +17,19 @@ export default class LoginOrRegisterScreen extends React.Component {
     return (
       <Container style={styles.container}>
         <Content padder>
-          <Text style={styles.pageTitle}>Welkom</Text>
-          <Form>
-            <Item stackedLabel>
-              <Label>Gebruikersnaam</Label>
-              <Input keyboardType={'default'} autoCapitalize={false} />
-            </Item>
-            <Item stackedLabel>
-              <Label>Wachtwoord</Label>
-              <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
-            </Item>
-            <Item stackedLabel>
-              <Label>Bevestig wachtwoord</Label>
-              <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
-            </Item>
-            <Item stackedLabel>
-              <Label>E-mail</Label>
-              <Input keyboardType={'default'} autoCapitalize={false} />
-            </Item>
-            <Button className={styles.button} onPress={() => this.props.navigation.navigate('WaitingForApproval')} block>
-              <Text style={styles.submitButtonText}> Registreren </Text>
+          <View style={{ alignItems: 'center', marginTop: 75 }}>
+            <Image style={{ width: 256, height: 136 }} source={require('../assets/images/logo-wit.png')} />
+          </View>
+          <View style={{
+            marginTop: 200
+          }}>
+            <Button style={{ marginBottom: 20 }} rounded light block>
+              <Text style={{ fontSize: 18 }}>ik ben al lid</Text>
             </Button>
-          </Form>
-          <Text onPress={() => { this.props.navigation.navigate('Login') }} style={styles.login}>Al een account? Log in</Text>
+            <Button style={{ marginBottom: 20 }} rounded light block>
+              <Text style={{ fontSize: 18 }}>doe mij die baan</Text>
+            </Button>
+          </View>
         </Content>
       </Container>
     );
@@ -49,7 +39,7 @@ export default class LoginOrRegisterScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0084ff',
   },
   pageTitle: {
     fontFamily: 'montserrat-bold',
