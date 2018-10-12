@@ -55,7 +55,7 @@ export default class LoginScreen extends React.Component {
               block
               light
             >
-              <Text className={[globalStyles.headerLight1, styles.submitButton]}>ga verder</Text>
+              <Text style={[globalStyles.headerLight1, styles.submitButton]}>ga verder</Text>
             </Button>
           </Form>
         </Content>
