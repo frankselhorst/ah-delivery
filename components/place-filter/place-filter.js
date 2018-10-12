@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Dimensions, Title } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import gql from 'graphql-tag';
-import { Text, Button, InputGroup } from 'native-base';
+import { Text, Button, InputGroup, Title } from 'native-base';
 import { Query } from 'react-apollo';
+import globalStyles from '../../styles/styles';
+import AppHeader from '../app-header/app-header';
 
 
 const GET_LOCATIONS = gql`
   {
-    locations {
+    getLocations {
       id
       place
     }
@@ -46,10 +48,12 @@ export default class PlaceFilter extends React.Component {
 
           return (
             <React.Fragment>
-              <Title>Kies je locatie</Title>
+              <AppHeader />
+              <Title style={globalStyles.header1}>ik wil in</Title>
               <ScrollView style={styles.scroll} showsHorizontalScrollIndicator={false}>
                 <InputGroup style={styles.group}>
-                  {data.locations.map(({ place, id }) => {
+                  {data.getLocations
+                  .map(({ place, id }) => {
                     return (
                       <Button
                         onPress={() => this.onPlaceSelect(id)}
@@ -59,7 +63,7 @@ export default class PlaceFilter extends React.Component {
                         light={selectedLocation !== id}
                         primary={selectedLocation === id}
                       >
-                        <Text>{place}</Text>
+                        <Text style={globalStyles.text}>{place}</Text>
                       </Button>
                     );
                   })}
@@ -83,7 +87,5 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   scroll: {
-    borderWidth: 0,
-    marginBottom: 16,
   }
 });

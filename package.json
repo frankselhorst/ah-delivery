@@ -26,7 +26,8 @@
     "react-apollo": "^2.2.4",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-onboarding-swiper": "^0.7.1",
-    "react-navigation": "^2.16.0"
+    "react-navigation": "^2.16.0",
+    "uniq": "^1.0.1"
   },
   "devDependencies": {
     "jest-expo": "30.0.0"

@@ -6,11 +6,12 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from 'react-apollo';
+import colors from './constants/Colors';
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://localhost:4000'
+    uri: 'https://beta-labs.ah.nl/alwaysdeliver/graphql/'
   }),
   cache,
 });
@@ -54,7 +55,10 @@ export default class App extends React.Component {
         // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         'montserrat-regular': require('./assets/fonts/Montserrat/Montserrat-Regular.ttf'),
+        'montserrat-medium': require('./assets/fonts/Montserrat/Montserrat-Medium.ttf'),
         'montserrat-bold': require('./assets/fonts/Montserrat/Montserrat-Bold.ttf'),
+        'montserrat-semibold': require('./assets/fonts/Montserrat/Montserrat-SemiBold.ttf'),
+        'montserrat-extrabold': require('./assets/fonts/Montserrat/Montserrat-ExtraBold.ttf'),
         'montserrat-italic': require('./assets/fonts/Montserrat/Montserrat-Italic.ttf'),
         'montserrat-black': require('./assets/fonts/Montserrat/Montserrat-Black.ttf')
       })
@@ -75,6 +79,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: colors.appBackground,
   }
 });

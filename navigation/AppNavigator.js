@@ -24,5 +24,5 @@ export default createSwitchNavigator({
   Onboarding: OnboardScreen,
   SelectSlot: SelectSlotScreen
 }, {
-    initialRouteName: 'Onboarding'
+    initialRouteName: 'SelectSlot'
   });
