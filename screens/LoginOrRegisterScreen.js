@@ -4,6 +4,9 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import { Container, Content, Form, Item, Label, Input, Button } from 'native-base';
+import AppHeader from '../components/app-header/app-header';
+import Colors from '../constants/Colors';
 
 export default class LoginOrRegisterScreen extends React.Component {
   static navigationOptions = {
@@ -12,9 +15,33 @@ export default class LoginOrRegisterScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>LoginOrRegisterScreen</Text>
-      </View>
+      <Container style={styles.container}>
+        <Content padder>
+          <Text style={styles.pageTitle}>Welkom</Text>
+          <Form>
+            <Item stackedLabel>
+              <Label>Gebruikersnaam</Label>
+              <Input keyboardType={'default'} autoCapitalize={false} />
+            </Item>
+            <Item stackedLabel>
+              <Label>Wachtwoord</Label>
+              <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
+            </Item>
+            <Item stackedLabel>
+              <Label>Bevestig wachtwoord</Label>
+              <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
+            </Item>
+            <Item stackedLabel>
+              <Label>E-mail</Label>
+              <Input keyboardType={'default'} autoCapitalize={false} />
+            </Item>
+            <Button className={styles.button} onPress={() => this.props.navigation.navigate('WaitingForApproval')} block>
+              <Text style={styles.submitButtonText}> Registreren </Text>
+            </Button>
+          </Form>
+          <Text onPress={() => { this.props.navigation.navigate('Login') }} style={styles.login}>Al een account? Log in</Text>
+        </Content>
+      </Container>
     );
   }
 }
@@ -24,4 +51,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  pageTitle: {
+    fontFamily: 'montserrat-bold',
+    fontSize: 25,
+    textAlign: 'center',
+    marginTop: 40,
+  },
+  submitButtonText: {
+    color: "#fff"
+  },
+  button: {
+    backgroundColor: Colors.tintColor
+  },
+  login: {
+    color: Colors.tintColor,
+    marginTop: 8
+  }
 });

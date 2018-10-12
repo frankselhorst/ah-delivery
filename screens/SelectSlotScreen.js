@@ -35,7 +35,7 @@ export default class SelectSlotScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
         <AppHeader title="Kies je rit" />
         <Content padder>
           <Query query={GET_LOCATIONS}>
@@ -67,6 +67,9 @@ export default class SelectSlotScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fafafa',
+  },
   button: {
     marginTop: 30
   }

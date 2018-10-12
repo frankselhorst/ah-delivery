@@ -3,8 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import gql from 'graphql-tag';
 import {
   Container,
-  Body,
-  Title,
   Content,
   Text,
   Form,
@@ -52,15 +50,15 @@ export default class LoginScreen extends React.Component {
               return (
                 <Form>
                   <Item stackedLabel>
-                    <Label>Gebruikersnaam {data.locations[0].place}</Label>
-                    <Input />
+                    <Label>Gebruikersnaam</Label>
+                    <Input keyboardType={'default'} autoCapitalize={false} />
                   </Item>
                   <Item stackedLabel last>
-                    <Label>Paswoord</Label>
-                    <Input />
+                    <Label>Wachtwoord</Label>
+                    <Input secureTextEntry={true} keyboardType={'default'} autoCapitalize={false} />
                   </Item>
-                  <Button style={styles.button} block primary>
-                    <Text> Inloggen </Text>
+                  <Button onPress={() => this.props.navigation.navigate('Home')} style={styles.button} block primary>
+                    <Text className={styles.submitButton}> Inloggen </Text>
                   </Button>
                 </Form>
               );
@@ -75,5 +73,8 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   button: {
     marginTop: 30
+  },
+  submitButton: {
+    color: "#fff",
   }
 });

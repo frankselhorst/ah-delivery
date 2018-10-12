@@ -6,12 +6,9 @@ import {
     View,
     Dimensions
 } from 'react-native';
+import Colors from '../constants/Colors';
 
 import Onboarding from 'react-native-onboarding-swiper';
-
-const imageStyle = StyleSheet.create({
-    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-})
 
 export default class OnboardScreen extends React.Component {
     static navigationOptions = {
@@ -24,27 +21,27 @@ export default class OnboardScreen extends React.Component {
                 <Onboarding
                     transitionAnimationDuration={250}
                     onDone={() => {
-                        this.props.navigation.navigate('Home')
+                        this.props.navigation.navigate('LoginOrRegister')
                     }}
                     showSkip={false}
                     pages={[
                         {
-                            backgroundColor: '#fff',
-                            image: <Image style={imageStyle} source={require('../assets/images/money-maker.gif')} />,
-                            title: 'Make money fast',
-                            subtitle: 'In 3 stappen een baan',
+                            backgroundColor: Colors.tintColor,
+                            image: <Image source={require('../assets/images/placeholder.png')} />,
+                            title: <Text style={styles.pageTitle}>Make money fast</Text>,
+                            subtitle: <Text style={styles.pageSubTitle}>in 3 stappen een baan</Text>,
                         },
                         {
-                            backgroundColor: '#fff',
+                            backgroundColor: Colors.tintColor,
                             image: <Image source={require('../assets/images/placeholder.png')} />,
-                            title: 'Dan ga ik wel komen',
-                            subtitle: 'want ik ben flexibel',
+                            title: <Text style={styles.pageTitle}>Dan ga ik wel komen</Text>,
+                            subtitle: <Text style={styles.pageSubTitle}>want ik ben flexibel</Text>,
                         },
                         {
-                            backgroundColor: '#fff',
+                            backgroundColor: Colors.tintColor,
                             image: <Image source={require('../assets/images/placeholder.png')} />,
-                            title: 'In ieder stadje',
-                            subtitle: 'een ander ritje',
+                            title: <Text style={styles.pageTitle}>In ieder stadje</Text>,
+                            subtitle: <Text style={styles.pageSubTitle}>een ander ritje</Text>,
                         }
                     ]}
                 />
@@ -58,4 +55,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    pageTitle: {
+        fontFamily: 'montserrat-bold', fontSize: 25, color: "#fff"
+    },
+    pageSubTitle: {
+        fontFamily: 'montserrat-regular', fontSize: 18, marginTop: 8, color: "#fff"
+    }
 });

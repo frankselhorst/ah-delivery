@@ -5,7 +5,9 @@ import {
   Body,
   Title,
   Left,
-  Right
+  Right,
+  Button,
+  Icon
 } from 'native-base';
 import { Query } from 'react-apollo';
 
@@ -31,11 +33,11 @@ const GET_LOCATIONS = gql`
 export default class AppHeader extends React.Component {
   render() {
     return (
-        <Header transparent={true}>
-          <Body>
-            <Title>{this.props.title}</Title>
-          </Body>
-        </Header>
+      <Header transparent={true}>
+        <Body>
+          <Title>{this.props.title}</Title>
+        </Body>
+      </Header>
     );
   }
 }

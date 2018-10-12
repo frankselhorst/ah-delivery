@@ -10,7 +10,7 @@ import { ApolloProvider } from 'react-apollo';
 const cache = new InMemoryCache();
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://10.41.60.126:4000'
+    uri: 'http://localhost:4000'
   }),
   cache,
 });
@@ -52,7 +52,11 @@ export default class App extends React.Component {
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf')
+        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        'montserrat-regular': require('./assets/fonts/Montserrat/Montserrat-Regular.ttf'),
+        'montserrat-bold': require('./assets/fonts/Montserrat/Montserrat-Bold.ttf'),
+        'montserrat-italic': require('./assets/fonts/Montserrat/Montserrat-Italic.ttf'),
+        'montserrat-black': require('./assets/fonts/Montserrat/Montserrat-Black.ttf')
       })
     ]);
   };
