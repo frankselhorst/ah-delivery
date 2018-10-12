@@ -1,28 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, Dimensions } from 'react-native';
 import gql from 'graphql-tag';
-import {
-  Container,
-  Content,
-  Text,
-  Spinner,
-  Card,
-  CardItem,
-  Body,
-  Title,
-  Button,
-  InputGroup
-} from 'native-base';
-
+import { Container, Content, Text, Spinner } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import colors from '../constants/Colors';
 import { Query } from 'react-apollo';
-import AppHeader from '../components/app-header/app-header';
+
 import PlaceFilter from '../components/place-filter/place-filter';
 import TimeFilter from '../components/time-filter/time-filter';
 import Ride from '../components/ride/ride';
 
 const GET_LOCATIONS = gql`
   {
-    locations {
+    getLocations {
       id
       zone
       place
@@ -31,6 +21,8 @@ const GET_LOCATIONS = gql`
         title
         from
         till
+        duration
+        fee
       }
     }
   }
@@ -58,42 +50,89 @@ export default class SelectSlotScreen extends React.Component {
     });
   };
 
+  onRideSelected = () => {
+    this.props.navigation.navigate('Login');
+  };
+
   render() {
     const { filterPlace, filterTime } = this.state;
     return (
       <Container style={styles.container}>
-        <AppHeader title="Kies je rit" />
         <Content padder>
-          <PlaceFilter onPlaceFiltered={this.onPlaceFiltered} />
-          <TimeFilter onTimeFiltered={this.onTimeFiltered} />
+          <Grid>
+            <Row>
+              <Col style={styles.filters}>
+                <PlaceFilter onPlaceFiltered={this.onPlaceFiltered} />
+                <TimeFilter
+                  style={styles.timeFilter}
+                  location={filterPlace}
+                  onTimeFiltered={this.onTimeFiltered}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <ScrollView vertical style={styles.slotContainer}>
+                  <Query query={GET_LOCATIONS}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <Spinner />;
+                      if (error) return <Text> Error! ${error.message} </Text>;
 
-          <Query query={GET_LOCATIONS}>
-            {({ loading, error, data }) => {
-              if (loading) return <Spinner />;
-              if (error) return <Text> Error! ${error.message} </Text>;
-
-              return data.locations
-                .filter(({ id }) => filterPlace === null || id === filterPlace)
-                .map(({ zone, place, id, rides }) => {
-                  return rides
-                    .filter(
-                      ({ from }) => filterTime === null || from === filterTime
-                    )
-                    .map(ride => <Ride key={ride.id} place={place} ride={ride} />);
-                });
-            }}
-          </Query>
+                      return data.getLocations
+                        .filter(
+                          ({ id }) => filterPlace === null || id === filterPlace
+                        )
+                        .map(({ zone, place, id, rides }, index) => {
+                          return rides
+                            .filter(
+                              ({ from }) =>
+                                filterTime === null || from === filterTime
+                            )
+                            .map((ride, rideIndex) => (
+                              <Ride
+                                onPress={this.onRideSelected}
+                                key={`${ride.id}-${rideIndex}`}
+                                place={place}
+                                ride={ride}
+                              />
+                            ));
+                        });
+                    }}
+                  </Query>
+                </ScrollView>
+              </Col>
+            </Row>
+          </Grid>
         </Content>
       </Container>
     );
   }
 }
 
+const fack = 100;
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fafafa',
+  slotContainer: {
+    backgroundColor: colors.appBackground,
+    flex: 0,
+    height: Dimensions.get('screen').height - 290
   },
   group: {
-    marginBottom: 30
+    marginBottom: 30,
+    flex: 0
+  },
+  filters: {
+    borderBottomWidth: 1,
+    borderColor: '#eeeeee',
+    flex: 0,
+    height: 290,
+  },
+  timeFilter: {
+    marginTop: 16,
+    flex: 0
+  },
+  container: {
+    flex: 0,
+    flexDirection: 'column',
+    justifyContent: 'center'
   }
 });
