@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import MapComponent from '../components/map/map';
 
 export default class UspScreen extends React.Component {
+
   static navigationOptions = {
     header: null
   };
@@ -9,7 +11,10 @@ export default class UspScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>UspScreen</Text>
+        <MapComponent style={{
+          height: Dimensions.get('window').height,
+          width: Dimensions.get('window').width,
+        }} />
       </View>
     );
   }

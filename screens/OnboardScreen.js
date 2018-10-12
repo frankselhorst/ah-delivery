@@ -19,27 +19,27 @@ export default class OnboardScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Onboarding
-                    transitionAnimationDuration={250}
+                    transitionAnimationDuration={0}
                     onDone={() => {
                         this.props.navigation.navigate('LoginOrRegister')
                     }}
                     showSkip={false}
                     pages={[
                         {
-                            backgroundColor: Colors.tintColor,
-                            image: <Image source={require('../assets/images/placeholder.png')} />,
+                            backgroundColor: "#0383FF",
+                            image: <Image source={require('../assets/images/money.gif')} />,
                             title: <Text style={styles.pageTitle}>Make money fast</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>in 3 stappen een baan</Text>,
                         },
                         {
-                            backgroundColor: Colors.tintColor,
-                            image: <Image source={require('../assets/images/placeholder.png')} />,
+                            backgroundColor: "#0DEEBB",
+                            image: <Image source={require('../assets/images/flex.gif')} />,
                             title: <Text style={styles.pageTitle}>Dan ga ik wel komen</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>want ik ben flexibel</Text>,
                         },
                         {
-                            backgroundColor: Colors.tintColor,
-                            image: <Image source={require('../assets/images/placeholder.png')} />,
+                            backgroundColor: "#FFD702",
+                            image: <Image source={require('../assets/images/smart.gif')} />,
                             title: <Text style={styles.pageTitle}>In ieder stadje</Text>,
                             subtitle: <Text style={styles.pageSubTitle}>een ander ritje</Text>,
                         }
