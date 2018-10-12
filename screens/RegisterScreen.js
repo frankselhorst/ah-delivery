@@ -34,7 +34,7 @@ export default class RegisterScreen extends React.Component {
               <Label>E-mail</Label>
               <Input keyboardType={'default'} autoCapitalize={false} />
             </Item>
-            <Button className={styles.button} onPress={() => this.props.navigation.navigate('WaitingForApproval')} block primary>
+            <Button className={styles.button} onPress={() => this.props.navigation.push('WaitingForApproval')} block primary>
               <Text style={styles.submitButtonText}> Volgende </Text>
             </Button>
           </Form>

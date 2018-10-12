@@ -35,11 +35,11 @@ export default class LoginOrRegisterScreen extends React.Component {
               <Label>E-mail</Label>
               <Input keyboardType={'default'} />
             </Item>
-            <Button className={styles.button} onPress={() => this.props.navigation.navigate('WaitingForApproval')} block>
+            <Button className={styles.button} onPress={() => this.props.navigation.push('WaitingForApproval')} block>
               <Text style={styles.submitButtonText}> Registreren </Text>
             </Button>
           </Form>
-          <Text onPress={() => { this.props.navigation.navigate('Login') }} style={styles.login}>Al een account? Log in</Text>
+          <Text onPress={() => { this.props.navigation.push('Login') }} style={styles.login}>Al een account? Log in</Text>
         </Content>
       </Container>
     );

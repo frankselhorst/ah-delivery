@@ -9,7 +9,7 @@ export const Approved = props => (
       <Text style={globalStyles.header1}>Approved!</Text>
       <Button
         onPress={() => {
-          props.navigation.navigate('Home');
+          props.navigation.push('SelectSlot');
         }}
         primary
         block

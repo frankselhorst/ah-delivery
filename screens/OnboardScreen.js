@@ -21,7 +21,7 @@ export default class OnboardScreen extends React.Component {
                 <Onboarding
                     transitionAnimationDuration={0}
                     onDone={() => {
-                        this.props.navigation.navigate('LoginOrRegister')
+                        this.props.navigation.push('LoginOrRegister')
                     }}
                     showSkip={false}
                     pages={[

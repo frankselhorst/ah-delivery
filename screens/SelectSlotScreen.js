@@ -52,7 +52,7 @@ export default class SelectSlotScreen extends React.Component {
   };
 
   onRideSelected = () => {
-    this.props.navigation.navigate('Login');
+    this.props.navigation.push('Login');
   };
 
   render() {
