@@ -7,28 +7,45 @@ import {
 } from 'react-native';
 import { Container, Content, Form, Item, Label, Input, Button } from 'native-base';
 import Colors from '../constants/Colors';
+import globalStyles from '../styles/styles';
 
 export default class LoginOrRegisterScreen extends React.Component {
+
   static navigationOptions = {
     header: null,
   };
+
   render() {
     return (
       <View style={styles.container}>
-
-        <View style={{ alignItems: 'center', marginTop: 75 }}>
-          <Image style={{ width: 256, height: 136 }} source={require('../assets/images/logo-wit.png')} />
-        </View>
-        <View style={{
-          marginTop: 200
-        }}>
-          <Button style={{ marginBottom: 20 }} rounded light block>
-            <Text style={{ fontSize: 18 }}>ik ben al lid</Text>
-          </Button>
-          <Button style={{ marginBottom: 20 }} rounded light block>
-            <Text style={{ fontSize: 18 }}>doe mij die baan</Text>
-          </Button>
-        </View>
+        <Content padder>
+          <View style={{ alignItems: 'center', marginTop: 75 }}>
+            <Image style={{ width: 256, height: 136 }} source={require('../assets/images/logo-wit.png')} />
+          </View>
+          <View style={{
+            marginTop: 200
+          }}>
+            <Button
+              onPress={() => this.props.navigation.push('Login')}
+              style={{ marginBottom: 20 }}
+              rounded
+              large
+              block
+              light
+            >
+              <Text style={[globalStyles.headerLight1]}>ik ben al lid</Text>
+            </Button>
+            <Button
+              onPress={() => this.props.navigation.push('Register')}
+              rounded
+              large
+              block
+              light
+            >
+              <Text style={[globalStyles.headerLight1]}>doe mij die baan</Text>
+            </Button>
+          </View>
+        </Content>
       </View>
     );
   }
@@ -45,14 +62,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 40,
   },
-  submitButtonText: {
-    color: "#fff"
-  },
-  button: {
-    backgroundColor: Colors.tintColor
-  },
   login: {
     color: Colors.tintColor,
     marginTop: 8
-  }
+  },
 });

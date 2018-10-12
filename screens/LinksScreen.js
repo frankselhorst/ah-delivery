@@ -8,7 +8,7 @@ export default class LinksScreen extends React.Component {
   };
 
   navigate = (page) => {
-    this.props.navigation.navigate(page)
+    this.props.navigation.push(page)
   }
 
   render() {

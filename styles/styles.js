@@ -47,5 +47,8 @@ export default StyleSheet.create({
     fontSize: 14,
     fontFamily: 'montserrat-regular',
     textAlign: 'left',
+  },
+  colorWhite: {
+    color: '#fff'
   }
 });
