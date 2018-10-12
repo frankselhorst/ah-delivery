@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import gql from 'graphql-tag';
 import {
   Container,
@@ -8,11 +8,17 @@ import {
   Spinner,
   Card,
   CardItem,
-  Body
+  Body,
+  Title,
+  Button,
+  InputGroup
 } from 'native-base';
 
 import { Query } from 'react-apollo';
 import AppHeader from '../components/app-header/app-header';
+import PlaceFilter from '../components/place-filter/place-filter';
+import TimeFilter from '../components/time-filter/time-filter';
+import Ride from '../components/ride/ride';
 
 const GET_LOCATIONS = gql`
   {
@@ -23,6 +29,8 @@ const GET_LOCATIONS = gql`
       rides {
         id
         title
+        from
+        till
       }
     }
   }
@@ -33,31 +41,46 @@ export default class SelectSlotScreen extends React.Component {
     header: null
   };
 
+  state = {
+    filterPlace: null,
+    filterTime: null
+  };
+
+  onPlaceFiltered = placeId => {
+    this.setState({
+      filterPlace: placeId
+    });
+  };
+
+  onTimeFiltered = time => {
+    this.setState({
+      filterTime: time
+    });
+  };
+
   render() {
+    const { filterPlace, filterTime } = this.state;
     return (
       <Container style={styles.container}>
         <AppHeader title="Kies je rit" />
         <Content padder>
+          <PlaceFilter onPlaceFiltered={this.onPlaceFiltered} />
+          <TimeFilter onTimeFiltered={this.onTimeFiltered} />
+
           <Query query={GET_LOCATIONS}>
             {({ loading, error, data }) => {
               if (loading) return <Spinner />;
               if (error) return <Text> Error! ${error.message} </Text>;
 
-              return data.locations.map(({ zone, place, id, rides }) => (
-                <Card key={id}>
-                  <CardItem header>
-                    <Text>{place}</Text>
-                  </CardItem>
-                  <CardItem>
-                    <Body>
-                      <Text>{zone}</Text>
-                    </Body>
-                  </CardItem>
-                  <CardItem footer>
-                    <Text>Aantal ritten {rides.length}</Text>
-                  </CardItem>
-                </Card>
-              ));
+              return data.locations
+                .filter(({ id }) => filterPlace === null || id === filterPlace)
+                .map(({ zone, place, id, rides }) => {
+                  return rides
+                    .filter(
+                      ({ from }) => filterTime === null || from === filterTime
+                    )
+                    .map(ride => <Ride key={ride.id} place={place} ride={ride} />);
+                });
             }}
           </Query>
         </Content>
@@ -70,7 +93,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fafafa',
   },
-  button: {
-    marginTop: 30
+  group: {
+    marginBottom: 30
   }
 });
