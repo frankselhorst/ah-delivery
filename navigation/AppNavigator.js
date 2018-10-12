@@ -8,6 +8,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import UspScreen from '../screens/UspScreen';
 import WaitingForApprovalScreen from '../screens/WaitingForApprovalScreen';
 import ApprovedScreen from '../screens/ApprovedScreen';
+import OnboardScreen from '../screens/OnboardScreen';
 import SelectSlotScreen from '../screens/SelectSlotScreen';
 
 export default createSwitchNavigator({
@@ -20,5 +21,8 @@ export default createSwitchNavigator({
   Usp: UspScreen,
   WaitingForApproval: WaitingForApprovalScreen,
   Approved: ApprovedScreen,
+  Onboarding: OnboardScreen,
   SelectSlot: SelectSlotScreen
-});
+}, {
+    initialRouteName: 'Onboarding'
+  });

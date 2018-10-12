@@ -4,9 +4,14 @@ import {
     StyleSheet,
     Text,
     View,
+    Dimensions
 } from 'react-native';
 
 import Onboarding from 'react-native-onboarding-swiper';
+
+const imageStyle = StyleSheet.create({
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+})
 
 export default class OnboardScreen extends React.Component {
     static navigationOptions = {
@@ -24,22 +29,22 @@ export default class OnboardScreen extends React.Component {
                     showSkip={false}
                     pages={[
                         {
-                            backgroundColor: '#FF4E4E',
-                            image: <Image source={require('../assets/images/placeholder.png')} />,
-                            title: 'Waar',
-                            subtitle: 'Kies zelf de locatie',
+                            backgroundColor: '#fff',
+                            image: <Image style={imageStyle} source={require('../assets/images/money-maker.gif')} />,
+                            title: 'Make money fast',
+                            subtitle: 'In 3 stappen een baan',
                         },
                         {
-                            backgroundColor: '#4FFF4E',
+                            backgroundColor: '#fff',
                             image: <Image source={require('../assets/images/placeholder.png')} />,
-                            title: 'Wanneer',
-                            subtitle: 'Jij bepaalt wanneer je wel en niet wil werken',
+                            title: 'Dan ga ik wel komen',
+                            subtitle: 'want ik ben flexibel',
                         },
                         {
-                            backgroundColor: '#4A90E2',
+                            backgroundColor: '#fff',
                             image: <Image source={require('../assets/images/placeholder.png')} />,
-                            title: 'Wanneer',
-                            subtitle: 'Jij bepaalt wanneer je wel en niet wil werken',
+                            title: 'In ieder stadje',
+                            subtitle: 'een ander ritje',
                         }
                     ]}
                 />
